@@ -1,0 +1,23 @@
+{
+  "name": "modern-front-end-architecrure-patterns",
+  "version": "1.0.0",
+  "description": "modern-front-end-architecrure-patterns",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "lidqqq <lidqqq.dev@gmail.com> (https://lidqqq.dev/)",
+  "license": "MIT",
+  "dependencies": {
+    "next": "9.3.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-redux": "7.2.0",
+    "redux": "4.0.5",
+    "redux-thunk": "2.3.0"
+  },
+  "devDependencies": {
+    "redux-devtools": "3.5.0"
+  }
+}
