@@ -1,0 +1,7 @@
+export default {
+  PRISTINE: 'PRISTINE',
+  VALID: 'VALID',
+  INVALID: 'INVALID',
+  SUBMITTING: 'SUBMITTING',
+  SUCCESS: 'SUCCESS'
+};
