@@ -44,7 +44,7 @@ container.register({
     process.env.NODE_ENV === "production" ? "localhost" : "localhost"
   ),
   PORT: asValue(process.env.PORT || 3000),
-  PROTOCOL: asValue(process.env.NODE_ENV === "production" ? "https:" : "http:")
+  PROTOCOL: asValue(process.env.NODE_ENV === "production" ? "http:" : "http:")
 });
 
 export default container;
