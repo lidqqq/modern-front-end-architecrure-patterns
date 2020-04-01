@@ -1,7 +1,8 @@
-import App from 'next/app';
-import React from 'react';
-import { Provider } from 'react-redux';
-import withReduxAndDIcontainer from '../withReduxAndDIcontainer.js';
+import App from "next/app";
+import React from "react";
+import { Provider } from "react-redux";
+import withReduxAndDIcontainer from "../withReduxAndDIcontainer.js";
+import "normalize.css";
 
 class MyApp extends App {
   render() {

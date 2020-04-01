@@ -5,6 +5,7 @@ class ITFItemRepository {
   }
   async getById(id) {}
   async getTopstories() {}
+  async getAskstories() {}
 }
 
 export default ITFItemRepository;
