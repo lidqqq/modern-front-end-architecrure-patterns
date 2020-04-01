@@ -7,6 +7,9 @@ const handler = async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.status(500).json(e);
   });
+  if (!topStoryIds) {
+    return;
+  }
   const P = topStoryIds.slice(0, 10).map(async id => {
     const ItemGetById = DIcontainer.resolve("ItemGetById");
     return executeCreator(ItemGetById, id);

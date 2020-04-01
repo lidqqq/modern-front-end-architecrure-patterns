@@ -1,11 +1,11 @@
 import executeCreator from "../executeCreator.js";
 
 export default class AskController {
-  constructor({ ItemGetTopstories }) {
-    this.ItemGetTopstories = ItemGetTopstories;
+  constructor({ ItemGetAskstories }) {
+    this.ItemGetAskstories = ItemGetAskstories;
   }
   async preloadOnServer() {
-    const topStories = await executeCreator(this.ItemGetTopstories);
-    return topStories;
+    const askStories = await executeCreator(this.ItemGetAskstories);
+    return askStories;
   }
 }
