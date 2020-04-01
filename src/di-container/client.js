@@ -29,7 +29,7 @@ container.register({
 });
 // app:use-case
 container.register({
-  ItemGetTopstories: asClass(ItemGetTopstories).transient()
+  ItemGetTopstories: asClass(ItemGetTopstories).transient(),
   ItemGetById: asClass(ItemGetById).transient(),
   ItemGetAskstories: asClass(ItemGetAskstories).transient()
 });
@@ -42,9 +42,9 @@ container.register({
 container.register({
   HOSTNAME: asValue(
     process.env.NODE_ENV === "production" ? "localhost" : "localhost"
-    ).singleton(),
-  PORT: asValue(process.env.PORT || 3000).singleton(),
-  PROTOCOL: asValue(process.env.NODE_ENV === "production" ? "https:" : "http:").singleton()
+  ),
+  PORT: asValue(process.env.PORT || 3000),
+  PROTOCOL: asValue(process.env.NODE_ENV === "production" ? "https:" : "http:")
 });
 
 export default container;
