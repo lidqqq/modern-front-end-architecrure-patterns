@@ -20,19 +20,15 @@ const container = createContainer({
 // infra:
 container.register({
   // common service
-  fetch: asFunction(fetch, { lifetime: Lifetime.SINGLETON }),
+  fetch: asFunction(fetch).singleton(),
   // repository
-  ItemRepository: asClass(ItemRepository, { lifetime: Lifetime.SINGLETON })
+  ItemRepository: asClass(ItemRepository).singleton()
 });
 // app:use-case
 container.register({
-  ItemGetTopstories: asClass(ItemGetTopstories, {
-    lifetime: Lifetime.TRANSIENT
-  }),
-  ItemGetById: asClass(ItemGetById, { lifetime: Lifetime.TRANSIENT }),
-  ItemGetAskstories: asClass(ItemGetAskstories, {
-    lifetime: Lifetime.TRANSIENT
-  })
+  ItemGetTopstories: asClass(ItemGetTopstories).transient(),
+  ItemGetById: asClass(ItemGetById).transient(),
+  ItemGetAskstories: asClass(ItemGetAskstories).transient()
 });
 
 export default container;
