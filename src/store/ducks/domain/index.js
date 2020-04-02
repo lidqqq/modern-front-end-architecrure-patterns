@@ -1,23 +1,34 @@
-import { ITEM } from "../../consts/actionTypes.js";
+import { createReducer } from "@reduxjs/toolkit";
 import { byId, allIds } from "../../../utils/normalizer/index.js";
+import {
+  itemsLoadTopStoriesSucceeded,
+  itemsLoadByIdSucceeded
+} from "./item.js";
 export {
-  loadStartAction,
-  loadErrorAction,
-  loadItemByIdAction,
-  loadItemByIdSuccessAction,
-  loadTopStoriesSuccessAction
+  loadStart,
+  loadError,
+  itemsLoadTopStoriesSucceeded,
+  itemsLoadByIdSucceeded,
+  itemsLoadByIdAction
 } from "./item.js";
 
-export default (state, action) => {
-  switch (action.type) {
-    case ITEM.LOAD_TOP_STORIES_SUCCESS:
+export default createReducer(
+  {
+    items: {
+      byId: {},
+      allIds: []
+    }
+  },
+  {
+    [itemsLoadTopStoriesSucceeded]: (_, action) => {
       return {
         items: {
           byId: byId(action.payload),
           allIds: allIds(action.payload)
         }
       };
-    case ITEM.LOAD_ITEM_SUCCESS:
+    },
+    [itemsLoadByIdSucceeded]: (state, action) => {
       return {
         items: {
           ...state.items,
@@ -27,7 +38,6 @@ export default (state, action) => {
           }
         }
       };
-    default:
-      return { ...state };
+    }
   }
-};
+);

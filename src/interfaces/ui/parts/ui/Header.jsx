@@ -2,13 +2,13 @@ import Link from "next/link";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./Header.module.css";
-import { navigatinStartAction } from "../../../../store/ducks/appStates/index.js";
+import { commonLoadStart } from "../../../../store/ducks/app/index.js";
 
 export default function Header() {
   const disppatch = useDispatch();
   const onClick = useCallback(() => {
-    disppatch(navigatinStartAction());
-  }, [disppatch, navigatinStartAction]);
+    disppatch(commonLoadStart());
+  }, [disppatch, commonLoadStart]);
   return (
     <ul className={styles.container}>
       <li className={styles.li} onClick={onClick}>

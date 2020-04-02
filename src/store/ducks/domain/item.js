@@ -1,55 +1,40 @@
-import { ITEM, COMMON } from '../../consts/actionTypes.js';
+import { createAction } from "@reduxjs/toolkit";
 
 // simple action creators
-export const loadTopStoriesSuccessAction = payload => {
-  return {
-    type: ITEM.LOAD_TOP_STORIES_SUCCESS,
-    payload
-  };
-};
+export const itemsLoadTopStoriesSucceeded = createAction(
+  "items/loadTopStoriesSucceeded"
+);
 
-export const loadItemByIdSuccessAction = payload => {
-  return {
-    type: ITEM.LOAD_ITEM_SUCCESS,
-    payload
-  };
-};
+export const itemsLoadByIdSucceeded = createAction(
+  "items/loadItemByIdSucceeded"
+);
 
-export const loadErrorAction = (err) => {
-  return {
-    type: COMMON.LOAD_ERROR,
-    err
-  };
-};
+export const loadError = createAction("common/loadErr");
 
-export const loadStartAction = () => {
-  return {
-    type: COMMON.LOAD_START
-  };
-};
+export const loadStart = createAction("common/loadStart");
 
 // side-effect action creators
-export const loadItemByIdAction = id => (dispath, getState, { container }) => {
-  dispath(loadStartAction());
+export const itemsLoadByIdAction = id => (dispath, getState, { container }) => {
+  dispath(loadStart());
   const { domain } = getState();
   const resolvedIds = domain.items.allIds;
   if (id in resolvedIds) {
     return;
   }
-  const ItemGetById = container.resolve('ItemGetById');
+  const ItemGetById = container.resolve("ItemGetById");
   return new Promise((resolve, reject) => {
-    ItemGetById.on('SUCCESS', data => {
+    ItemGetById.on("SUCCESS", data => {
       resolve(data);
     })
-      .on('SERVER_ERROR', error => {
+      .on("SERVER_ERROR", error => {
         reject({
-          type: 'ServerError',
+          type: "ServerError",
           details: error.details
         });
       })
-      .on('ERROR', error => {
+      .on("ERROR", error => {
         reject({
-          type: 'Error',
+          type: "Error",
           details: error.details
         });
       });
@@ -57,9 +42,9 @@ export const loadItemByIdAction = id => (dispath, getState, { container }) => {
     ItemGetById.execute(id);
   })
     .then(item => {
-      dispath(loadItemByIdSuccessAction(item));
+      dispath(itemsLoadByIdSucceeded(item));
     })
     .catch(e => {
-      dispath(loadErrorAction(e))
+      dispath(loadError(e));
     });
 };
