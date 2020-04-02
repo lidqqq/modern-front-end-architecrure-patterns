@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "prestart": "npm run build",
     "start": "next start"
   },
   "author": "lidqqq <lidqqq.dev@gmail.com> (https://lidqqq.dev/)",

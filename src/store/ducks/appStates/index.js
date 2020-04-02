@@ -1,5 +1,11 @@
-import { ITEM, COMMON } from '../../consts/actionTypes.js';
-import APP_STATES from "../../consts/appStates.js"
+import { ITEM, COMMON } from "../../consts/actionTypes.js";
+import APP_STATES from "../../consts/appStates.js";
+
+export function navigatinStartAction() {
+  return {
+    type: COMMON.LOAD_START
+  };
+}
 
 export default (state, action) => {
   switch (action.type) {
@@ -12,6 +18,7 @@ export default (state, action) => {
         currentStatus: APP_STATES.INVALID
       };
     case ITEM.LOAD_ITEM_SUCCESS:
+    case ITEM.LOAD_TOP_STORIES_SUCCESS:
       return {
         currentStatus: APP_STATES.SUCCESS
       };
