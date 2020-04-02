@@ -4,7 +4,9 @@ import { createAction } from "@reduxjs/toolkit";
 export const itemsLoadTopStoriesSucceeded = createAction(
   "items/loadTopStoriesSucceeded"
 );
-
+export const itemsLoadAskStoriesSucceeded = createAction(
+  "items/loadAskStoriesSucceeded"
+);
 export const itemsLoadByIdSucceeded = createAction(
   "items/loadItemByIdSucceeded"
 );

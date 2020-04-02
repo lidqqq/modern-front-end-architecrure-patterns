@@ -2,12 +2,14 @@ import { createReducer } from "@reduxjs/toolkit";
 import { byId, allIds } from "../../../utils/normalizer/index.js";
 import {
   itemsLoadTopStoriesSucceeded,
+  itemsLoadAskStoriesSucceeded,
   itemsLoadByIdSucceeded
 } from "./item.js";
 export {
   loadStart,
   loadError,
   itemsLoadTopStoriesSucceeded,
+  itemsLoadAskStoriesSucceeded,
   itemsLoadByIdSucceeded,
   itemsLoadByIdAction
 } from "./item.js";
@@ -21,6 +23,14 @@ export default createReducer(
   },
   {
     [itemsLoadTopStoriesSucceeded]: (_, action) => {
+      return {
+        items: {
+          byId: byId(action.payload),
+          allIds: allIds(action.payload)
+        }
+      };
+    },
+    [itemsLoadAskStoriesSucceeded]: (_, action) => {
       return {
         items: {
           byId: byId(action.payload),
