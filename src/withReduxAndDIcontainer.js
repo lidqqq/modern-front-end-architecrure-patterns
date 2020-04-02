@@ -1,9 +1,9 @@
-import React from 'react';
-import { initializeStore } from './store/index.js';
-import DIContainer from './di-container/client.js';
+import React from "react";
+import { initializeStore } from "./store/index.js";
+import DIContainer from "./di-container/client.js";
 
-const isServer = typeof window === 'undefined';
-const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
+const isServer = typeof window === "undefined";
+const __NEXT_REDUX_STORE__ = "__NEXT_REDUX_STORE__";
 
 function getOrCreateStore(initialState) {
   // Always make a new store if server, otherwise state is shared between requests
@@ -20,7 +20,7 @@ function getOrCreateStore(initialState) {
 
 export default App => {
   return class AppWithRedux extends React.Component {
-     static async getInitialProps(appContext) {
+    static async getInitialProps(appContext) {
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
       const reduxStore = getOrCreateStore();
@@ -31,9 +31,11 @@ export default App => {
       appContext.ctx.DIContainer = DIContainer;
 
       let appProps = {};
-      if (typeof App.getInitialProps === 'function') {
+      // if (isServer) {
+      if (typeof App.getInitialProps === "function") {
         appProps = await App.getInitialProps(appContext);
       }
+      // }
 
       return {
         ...appProps,

@@ -1,24 +1,25 @@
 import Header from "../../parts/ui/Header.jsx";
 import { useSelector } from "react-redux";
+import {
+  itemsAskStoriesSelector,
+  appCurrentStatusSelector
+} from "../../selectors.js";
 import styles from "./index.module.css";
 
 const App = () => {
-  const currentStatus = useSelector(state => {
-    return state.appStates.currentStatus;
-  });
-  const items = useSelector(state => state.domain.items);
+  const currentStatus = useSelector(appCurrentStatusSelector);
+  const askStories = useSelector(itemsAskStoriesSelector);
 
   return (
     <>
       <div className={styles.container}>
         <Header></Header>
         <p>{currentStatus}</p>
-        {items.allIds.length > 0 && (
+        {askStories.length > 0 && (
           <ul>
-            {Object.keys(items.byId).map((id, idx) => {
-              const item = items.byId[id];
+            {askStories.map((item, idx) => {
               return (
-                <li key={id} className={styles.li}>
+                <li key={item.id} className={styles.li}>
                   <div>
                     {idx + 1}:<a href="">{item.title}</a>
                     <p>

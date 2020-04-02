@@ -1,4 +1,4 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction } from "redux-act";
 
 // simple action creators
 export const itemsLoadTopStoriesSucceeded = createAction(
@@ -10,10 +10,6 @@ export const itemsLoadAskStoriesSucceeded = createAction(
 export const itemsLoadByIdSucceeded = createAction(
   "items/loadItemByIdSucceeded"
 );
-
-export const loadError = createAction("common/loadErr");
-
-export const loadStart = createAction("common/loadStart");
 
 // side-effect action creators
 export const itemsLoadByIdAction = id => (dispath, getState, { container }) => {

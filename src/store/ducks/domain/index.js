@@ -1,4 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from "redux-act";
 import { byId, allIds } from "../../../utils/normalizer/index.js";
 import {
   itemsLoadTopStoriesSucceeded,
@@ -6,8 +6,6 @@ import {
   itemsLoadByIdSucceeded
 } from "./item.js";
 export {
-  loadStart,
-  loadError,
   itemsLoadTopStoriesSucceeded,
   itemsLoadAskStoriesSucceeded,
   itemsLoadByIdSucceeded,
@@ -16,38 +14,47 @@ export {
 
 export default createReducer(
   {
-    items: {
-      byId: {},
-      allIds: []
-    }
-  },
-  {
-    [itemsLoadTopStoriesSucceeded]: (_, action) => {
-      return {
-        items: {
-          byId: byId(action.payload),
-          allIds: allIds(action.payload)
-        }
-      };
-    },
-    [itemsLoadAskStoriesSucceeded]: (_, action) => {
-      return {
-        items: {
-          byId: byId(action.payload),
-          allIds: allIds(action.payload)
-        }
-      };
-    },
-    [itemsLoadByIdSucceeded]: (state, action) => {
+    [itemsLoadTopStoriesSucceeded]: (state, payload) => {
       return {
         items: {
           ...state.items,
           byId: {
             ...state.items.byId,
-            [action.payload.id]: action.payload
+            ...byId(payload)
+          },
+          allIds: [...state.items.allIds, ...allIds(payload)],
+          topIds: allIds(payload)
+        }
+      };
+    },
+    [itemsLoadAskStoriesSucceeded]: (state, payload) => {
+      return {
+        items: {
+          ...state.items,
+          byId: { ...state.items.byId, ...byId(payload) },
+          allIds: [...state.items.allIds, ...allIds(payload)],
+          askIds: allIds(payload)
+        }
+      };
+    },
+    [itemsLoadByIdSucceeded]: (state, payload) => {
+      return {
+        items: {
+          ...state.items,
+          byId: {
+            ...state.items.byId,
+            [payload.id]: payload
           }
         }
       };
+    }
+  },
+  {
+    items: {
+      byId: {},
+      allIds: [],
+      askIds: [],
+      topIds: []
     }
   }
 );

@@ -1,23 +1,21 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "redux-act";
 import {
-  loadStart,
-  loadError,
   itemsLoadByIdSucceeded,
   itemsLoadTopStoriesSucceeded
 } from "../domain/index.js";
 import APP_STATES from "../../consts/appStates.js";
 
-export const commonLoadStart = createAction("common/loadStart");
+export const appLoadError = createAction("app/loadErr");
+export const appLoadStart = createAction("app/loadStart");
 
 export default createReducer(
-  { currentStatus: APP_STATES.PRISTINE },
   {
-    [loadStart]: () => {
+    [appLoadStart]: () => {
       return {
         currentStatus: APP_STATES.SUBMITTING
       };
     },
-    [loadError]: () => {
+    [appLoadError]: () => {
       return {
         currentStatus: APP_STATES.INVALID
       };
@@ -32,5 +30,6 @@ export default createReducer(
         currentStatus: APP_STATES.SUCCESS
       };
     }
-  }
+  },
+  { currentStatus: APP_STATES.PRISTINE }
 );
