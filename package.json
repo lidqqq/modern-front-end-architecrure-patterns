@@ -21,7 +21,8 @@
     "redux": "4.0.5",
     "redux-act": "1.8.0",
     "redux-thunk": "2.3.0",
-    "reselect": "4.0.0"
+    "reselect": "4.0.0",
+    "swr": "0.2.0"
   },
   "devDependencies": {
     "redux-devtools": "3.5.0",

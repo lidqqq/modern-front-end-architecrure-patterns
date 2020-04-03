@@ -23,6 +23,11 @@ export default function Header() {
           <a>Ask</a>
         </Link>
       </li>
+      <li className={styles.li} onClick={onClick}>
+        <Link href="/lazy">
+          <a>Lazy Top</a>
+        </Link>
+      </li>
     </ul>
   );
 }
