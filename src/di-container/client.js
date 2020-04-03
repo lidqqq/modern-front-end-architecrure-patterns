@@ -13,6 +13,7 @@ import ItemGetById from "../app/Item/ItemGetById.js";
 import ItemGetAskstories from "../app/Item/ItemGetAskstories.js";
 import IndexController from "../interfaces/http/index/index.js";
 import AskController from "../interfaces/http/ask/index.js";
+import ItemsIdController from "../interfaces/http/items/[id].js";
 
 // create DI container
 const container = createContainer({
@@ -36,7 +37,8 @@ container.register({
 // input:controller
 container.register({
   IndexController: asClass(IndexController).transient(),
-  AskController: asClass(AskController).transient()
+  AskController: asClass(AskController).transient(),
+  ItemsIdController: asClass(ItemsIdController).transient()
 });
 // consts:
 container.register({

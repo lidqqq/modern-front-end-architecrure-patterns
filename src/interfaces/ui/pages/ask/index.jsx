@@ -1,5 +1,6 @@
-import Header from "../../parts/ui/Header.jsx";
+import Link from "next/link";
 import { useSelector } from "react-redux";
+import Header from "../../parts/ui/Header.jsx";
 import {
   itemsAskStoriesSelector,
   appCurrentStatusSelector
@@ -21,7 +22,10 @@ const App = () => {
               return (
                 <li key={item.id} className={styles.li}>
                   <div>
-                    {idx + 1}:<a href="">{item.title}</a>
+                    {idx + 1}:
+                    <Link href={`/items/${item.id}`}>
+                      <a href="">{item.title}</a>
+                    </Link>
                     <p>
                       points:{item.score} by:{item.by} comments:
                       {item.descendants}

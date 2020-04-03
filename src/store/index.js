@@ -7,7 +7,14 @@ import APP_STATES from "./consts/appStates.js";
 
 const initialState = {
   app: {
-    currentStatus: APP_STATES.PRISTINE
+    currentStatus: APP_STATES.PRISTINE,
+    ctx: {
+      props: { pageProps: {}, initialReduxState: {} },
+      page: "",
+      query: {},
+      buildId: "",
+      isFallback: false
+    }
   },
   ui: {},
   domain: {

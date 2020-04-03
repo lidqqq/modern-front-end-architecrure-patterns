@@ -1,19 +1,21 @@
-import App from "../../interfaces/ui/pages/index/index.jsx";
-import { loadTopStoriesSuccessAction } from "../../store/ducks/domain/index.js";
+import App from "../../interfaces/ui/pages/items/[id].jsx";
+import { appCtxLoaded } from "../../store/ducks/app/index.js";
+import { itemsLoadByIdSucceeded } from "../../store/ducks/domain/index.js";
+
+const controllerName = "ItemsIdController";
 
 App.getInitialProps = async ctx => {
   // これらは src/withReduxAndDIcontainer.js で injection している
-  const {
-    reduxStore,
-    DIContainer,
-    query: { id }
-  } = ctx;
+  const { reduxStore, DIContainer, query } = ctx;
+  // store へ送る
+  reduxStore.dispatch(appCtxLoaded({ query }));
 
   // data を preload する
-  const controller = DIContainer.resolve("IndexController");
-  const preloadData = await controller.preloadOnServer();
+  const { id } = query;
+  const controller = DIContainer.resolve(controllerName);
+  const preloadData = await controller.preloadOnServer(id);
   // store へ送る
-  reduxStore.dispatch(loadTopStoriesSuccessAction(preloadData));
+  reduxStore.dispatch(itemsLoadByIdSucceeded(preloadData));
   return {};
 };
 

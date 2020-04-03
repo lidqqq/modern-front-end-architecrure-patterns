@@ -1,35 +1,55 @@
 import { createAction, createReducer } from "redux-act";
 import {
-  itemsLoadByIdSucceeded,
+  itemsLoadAskStoriesSucceeded,
   itemsLoadTopStoriesSucceeded
 } from "../domain/index.js";
 import APP_STATES from "../../consts/appStates.js";
 
 export const appLoadError = createAction("app/loadErr");
 export const appLoadStart = createAction("app/loadStart");
+export const appCtxLoaded = createAction("app/ctxLoaded");
 
 export default createReducer(
   {
-    [appLoadStart]: () => {
+    [appLoadStart]: state => {
       return {
+        ...state,
         currentStatus: APP_STATES.SUBMITTING
       };
     },
-    [appLoadError]: () => {
+    [appLoadError]: state => {
       return {
+        ...state,
         currentStatus: APP_STATES.INVALID
       };
     },
-    [itemsLoadByIdSucceeded]: () => {
+    [appCtxLoaded]: (state, payload) => {
       return {
+        ...state,
+        ctx: { ...payload }
+      };
+    },
+    [itemsLoadAskStoriesSucceeded]: state => {
+      return {
+        ...state,
         currentStatus: APP_STATES.SUCCESS
       };
     },
-    [itemsLoadTopStoriesSucceeded]: () => {
+    [itemsLoadTopStoriesSucceeded]: state => {
       return {
+        ...state,
         currentStatus: APP_STATES.SUCCESS
       };
     }
   },
-  { currentStatus: APP_STATES.PRISTINE }
+  {
+    currentStatus: APP_STATES.PRISTINE,
+    ctx: {
+      props: { pageProps: {}, initialReduxState: {} },
+      page: "",
+      query: {},
+      buildId: "",
+      isFallback: false
+    }
+  }
 );

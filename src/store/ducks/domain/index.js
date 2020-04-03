@@ -39,12 +39,11 @@ export default createReducer(
     },
     [itemsLoadByIdSucceeded]: (state, payload) => {
       return {
+        ...state,
         items: {
           ...state.items,
-          byId: {
-            ...state.items.byId,
-            [payload.id]: payload
-          }
+          byId: { ...state.items.byId, ...byId([payload]) },
+          allIds: [...state.items.allIds, ...allIds([payload])]
         }
       };
     }
