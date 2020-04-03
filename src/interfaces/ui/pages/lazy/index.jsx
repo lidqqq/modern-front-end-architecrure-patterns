@@ -24,7 +24,7 @@ const App = () => {
   const dispatch = useDispatch();
   const currentStatus = useSelector(appCurrentStatusSelector);
   const topStories = useSelector(itemsTopStoriesSelector);
-  const { data, error } = useSWR("/api/topStories", url =>
+  const { data, error } = useSWR("/api/topstories", url =>
     fetch(url)
       .then(r => r.json())
       .then(v => dispatch(itemsLoadTopStoriesSucceeded(v)))
