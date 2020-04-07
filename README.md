@@ -13,5 +13,8 @@
 
 ## refs.
 
+- https://reactjs.org/docs/thinking-in-react.html
+- https://redux.js.org/style-guide/style-guide
 - https://github.com/HackerNews/API
+- https://slides.com/joelkanzelmeyer/taming-large-redux-apps
 - https://blog.codeminer42.com/scalable-frontend-1-architecture-9b80a16b8ec7/
